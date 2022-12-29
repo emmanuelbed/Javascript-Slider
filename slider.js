@@ -12,14 +12,32 @@ const nextSlide = () => {
 };
 
 const prevSlide = () => {
+  slider.style.transform = `translateX(-${(slideNumber - 2) * 800}px)`;
+  slideNumber--;
+};
+
+const getFirstSlide = () => {
   slider.style.transform = `translateX(0px)`;
   slideNumber = 1;
+};
+
+const getLastSlide = () => {
+  slider.style.transform = `translateX(-${(length - 1) * 800}px)`;
+  slideNumber = length;
 };
 
 right.addEventListener("click", () => {
   if (slideNumber < images.length) {
     nextSlide();
   } else {
+    getFirstSlide();
+  }
+});
+
+left.addEventListener("click", () => {
+  if (slideNumber > 1) {
     prevSlide();
+  } else {
+    getLastSlide();
   }
 });
